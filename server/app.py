@@ -21,13 +21,15 @@ Usage (dev):
 Usage (prod):
     uvicorn server.app:app --host 0.0.0.0 --port 8000 --workers 4
 """
+from openenv.core.env_server.http_server import create_app  # type: ignore
+ 
 
-try:
-    from openenv.core.env_server.http_server import create_app
-except Exception as exc:  # pragma: no cover
-    raise ImportError(
-        "openenv-core is required. Install with: pip install 'openenv-core[core]>=0.2.2'"
-    ) from exc
+# try:
+#     from openenv.core.env_server.http_server import create_app
+# except Exception as exc:  # pragma: no cover
+#     raise ImportError(
+#         "openenv-core is required. Install with: pip install 'openenv-core[core]>=0.2.2'"
+#     ) from exc
 
 # Support two run modes:
 #   1. Installed as a package  → relative imports work
@@ -38,6 +40,8 @@ try:
 except ImportError:
     from models import DispatchTriageAction, DispatchTriageObservation          # type: ignore[no-redef]
     from server.Dispatch_triage_env_environment import DispatchTriageEnvironment  # type: ignore[no-redef]
+
+
 
 
 # ---------------------------------------------------------------------------
