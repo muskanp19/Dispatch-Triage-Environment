@@ -1,18 +1,3 @@
----
-title: Dispatch Triage Env — 911 Emergency Dispatch
-colorFrom: red
-colorTo: orange
-sdk: docker
-pinned: false
-app_port: 8000
-base_path: /web
-tags:
-  - openenv
-  - reinforcement-learning
-  - dispatch
-  - triage
----
-
 # 🚨 Dispatch Triage Env
 
 **A multi-incident 911 emergency dispatch triage environment for OpenEnv.**
@@ -141,13 +126,6 @@ pip install "openenv-core[core]>=0.2.2" openai
 uvicorn server.app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### Run the pre-submission validator
-
-```bash
-python validate.py                             # static + logic checks
-python validate.py --url http://localhost:8000 # also ping the live server
-```
-
 ### Build and run with Docker
 
 ```bash
@@ -188,7 +166,6 @@ Dispatch_triage_env/
 ├── models.py                                # Action / Observation / State models
 ├── client.py                                # DispatchTriageEnv async+sync client
 ├── inference.py                             # LLM agent runner (hackathon submission)
-├── validate.py                              # Pre-submission validation script
 └── server/
     ├── __init__.py                          # Server module exports
     ├── Dispatch_triage_env_environment.py   # Core environment logic
@@ -210,17 +187,3 @@ Dispatch_triage_env/
 \* At least one of `ENV_BASE_URL` or `LOCAL_IMAGE_NAME` is required to run `inference.py`.
 
 ---
-
-## Pre-Submission Checklist
-
-Run `python validate.py` and ensure all checks pass:
-
-- [ ] `openenv.yaml` exists and has `spec_version`, `name`, `app`, `port`, `tasks` (≥3)
-- [ ] `Dockerfile` exists and references port 8000
-- [ ] `inference.py` at project root
-- [ ] `inference.py` emits `[START]`, `[STEP]`, `[END]` log format
-- [ ] `inference.py` uses OpenAI client with `API_BASE_URL`, `MODEL_NAME`, `HF_TOKEN`
-- [ ] All rewards in `[0.0, 1.0]` across all difficulties
-- [ ] Cascade penalty reduces score for wrong dependency order (hard mode)
-- [ ] HF Space responds to `GET /health` with 200
-- [ ] `POST /reset` returns observations with incidents and units
