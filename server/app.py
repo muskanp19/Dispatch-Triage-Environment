@@ -84,5 +84,5 @@ def main(host: str = "0.0.0.0", port: int = 8000) -> None:
 #     args = parser.parse_args()
 #     main(host=args.host, port=args.port)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
