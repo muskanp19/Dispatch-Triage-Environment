@@ -71,11 +71,14 @@ def main(host: str = "0.0.0.0", port: int = 8000) -> None:
     uvicorn.run(app, host=host, port=port)
 
 
-if __name__ == "__main__":
-    import argparse
+# if __name__ == "__main__":
+#     import argparse
 
-    parser = argparse.ArgumentParser(description="Dispatch Triage Env server")
-    parser.add_argument("--host", default="0.0.0.0")
-    parser.add_argument("--port", type=int, default=8000)
-    args = parser.parse_args()
-    main(host=args.host, port=args.port)
+#     parser = argparse.ArgumentParser(description="Dispatch Triage Env server")
+#     parser.add_argument("--host", default="0.0.0.0")
+#     parser.add_argument("--port", type=int, default=8000)
+#     args = parser.parse_args()
+#     main(host=args.host, port=args.port)
+
+if __name__ == "__main__":
+    main()
