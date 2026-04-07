@@ -1,0 +1,21 @@
+spec_version: 1
+name: Dispatch_triage_env
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+description: >
+  Multi-incident 911 dispatch triage environment. The agent receives
+  natural-language emergency call descriptions and a finite pool of typed
+  units. It must infer urgency and correct unit type from context alone,
+  then sequence dispatch decisions to maximise a severity-weighted score.
+tasks:
+  - name: dispatch-easy
+    description: "3 incidents, 3 units — unambiguous priority order"
+    difficulty: easy
+  - name: dispatch-medium
+    description: "5 incidents, 3 units — agent must sacrifice 2 calls and match unit types"
+    difficulty: medium
+  - name: dispatch-hard
+    description: "7 incidents, 3 units — cascading dependency between incidents"
+    difficulty: hard
