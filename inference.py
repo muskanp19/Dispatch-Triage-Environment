@@ -43,8 +43,8 @@ from models import DispatchTriageAction
 API_BASE_URL: str       = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
 MODEL_NAME: str         = os.getenv("MODEL_NAME",   "Qwen/Qwen2.5-72B-Instruct")
 HF_TOKEN: Optional[str] = os.getenv("HF_TOKEN")
-ENV_BASE_URL: Optional[str]     = os.getenv("ENV_BASE_URL")
-LOCAL_IMAGE_NAME: Optional[str] = os.getenv("LOCAL_IMAGE_NAME")
+ENV_BASE_URL: Optional[str]     = os.getenv("ENV_BASE_URL", "https://muskanp-dispatch-triage-env.hf.space")
+LOCAL_IMAGE_NAME: Optional[str] = os.getenv("LOCAL_IMAGE_NAME", "dispatch-triage-env:latest")
 
 BENCHMARK: str          = "dispatch_triage_env"
 DIFFICULTIES: List[str] = ["easy", "medium", "hard"]

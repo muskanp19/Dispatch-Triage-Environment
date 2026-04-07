@@ -1,3 +1,15 @@
+---
+title: Dispatch Triage Env Environment Server
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+app_port: 8000
+base_path: /web
+tags:
+  - openenv
+---
+
 # 🚨 Dispatch Triage Env
 
 **A multi-incident 911 emergency dispatch triage environment for OpenEnv.**
@@ -181,9 +193,8 @@ Dispatch_triage_env/
 | `HF_TOKEN`        | **Yes**  | —                                    | HuggingFace API token for LLM calls |
 | `API_BASE_URL`    | No       | `https://router.huggingface.co/v1`   | LLM API endpoint |
 | `MODEL_NAME`      | No       | `Qwen/Qwen2.5-72B-Instruct`          | Model identifier |
-| `ENV_BASE_URL`    | No*      | —                                    | Deployed HF Space URL |
+| `ENV_BASE_URL`    | Yes      | `https://muskanp-dispatch-triage-env.hf.space`                                     | Deployed HF Space URL |
 | `LOCAL_IMAGE_NAME`| No*      | —                                    | Docker image (fallback if no ENV_BASE_URL) |
 
-\* At least one of `ENV_BASE_URL` or `LOCAL_IMAGE_NAME` is required to run `inference.py`.
 
 ---
