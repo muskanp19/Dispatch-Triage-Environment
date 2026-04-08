@@ -62,10 +62,10 @@ ENV PYTHONPATH="/app/env:$PYTHONPATH"
 
 # Liveness probe — required by the hackathon pre-submission checklist
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:7860/health || exit 1
+    CMD curl -f http://localhost:8000/health || exit 1
 
 # Expose the server port
-EXPOSE 7860
+EXPOSE 8000
 
 # Start the FastAPI server
-CMD ["sh", "-c", "cd /app/env && uvicorn server.app:app --host 0.0.0.0 --port 7860"]
+CMD ["sh", "-c", "cd /app/env && uvicorn server.app:app --host 0.0.0.0 --port 8000"]
