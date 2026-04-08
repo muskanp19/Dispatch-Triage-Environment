@@ -20,6 +20,7 @@ Stdout format (strictly required by hackathon grader):
     [END]   success=<bool> steps=<int> rewards=<float,...>
 """
 
+import asyncio
 import json
 import os
 import re
@@ -30,9 +31,8 @@ from typing import List, Optional, Tuple
 from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv(override=True)
-# DispatchTriageEnv is the CLIENT — connects to the running server via WebSocket.
-# inference.py lives at the repo root, so models/client are absolute imports.
+load_dotenv()
+
 from client import DispatchTriageEnv
 from models import DispatchTriageAction
 
@@ -43,12 +43,12 @@ from models import DispatchTriageAction
 API_BASE_URL: str       = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
 MODEL_NAME: str         = os.getenv("MODEL_NAME",   "Qwen/Qwen2.5-72B-Instruct")
 HF_TOKEN: Optional[str] = os.getenv("HF_TOKEN")
-ENV_BASE_URL: Optional[str]     = os.getenv("ENV_BASE_URL", "https://muskanp-dispatch-triage-env.hf.space")
+ENV_BASE_URL: str     = os.getenv("ENV_BASE_URL", "https://muskanp-dispatch-triage-env.hf.space")
 LOCAL_IMAGE_NAME: Optional[str] = os.getenv("LOCAL_IMAGE_NAME", "dispatch-triage-env:latest")
 
 BENCHMARK: str          = "dispatch_triage_env"
 DIFFICULTIES: List[str] = ["easy", "medium", "hard"]
-MAX_STEPS: int          = 8        # safety ceiling (3 valid dispatches per episode max)
+MAX_STEPS: int          = 8        
 TEMPERATURE: float      = 0.2
 MAX_TOKENS: int         = 512
 SUCCESS_THRESHOLD: float = 0.6    # normalised score in [0.0, 1.0]
@@ -352,4 +352,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
